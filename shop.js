@@ -1,11 +1,13 @@
-const path = require('path');
+const User = require("../models/user");
 
-const express = require('express');
-
-const shopController = require('../controllers/shop');
-
-const router = express.Router();
-
-router.get('/users', shopController.getIndex);
-
-module.exports = router;
+exports.getIndex = async (req, res, next) => {
+    await User.findAll()
+        .then(users => {
+            res.render('shop/index', {
+                users: users,
+                pageTitle: 'Users',
+                path: '/',
+            });
+        })
+        .catch(err => console.log(err));
+};
