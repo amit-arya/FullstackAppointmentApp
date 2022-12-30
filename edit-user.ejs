@@ -1,0 +1,23 @@
+<%- include('../includes/head.ejs') %>
+
+    </head>
+
+    <body>
+        <main>
+
+        <form class="product-form" action="/<% if(editing){%>edit-user<%} else{%>Add User<%} %>" method="POST">
+                Username: <br>
+                <input type="text" name="username" id="username" value="<% if(editing) {%><%= user.username %><%} %>"> <br>
+                Phone: <br>
+                <input type="number" name="phone" id="phone" value="<% if(editing) {%><%= user.phone %><%} %>"> <br>
+                Email: <br>
+                <input type="text" name="email" id="email" value="<% if(editing) {%><%= user.email %><%} %>"> <br>
+
+            <% if(editing){ %>
+              <input type="hidden" value="<%= user.id %>" name="userId">
+            <% } %>
+             <br>
+            <button class="btn" type="submit"><% if(editing){ %>Update User<% } else{ %>Add User<% } %></button>
+        </form>
+        </main>
+    </body>
